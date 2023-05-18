@@ -1,0 +1,17 @@
+[package]
+name = "jp"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "jp"
+path = "main.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+jmespath = { path = "../jmespath", features = ["preserve_order"] }
+santiago = "*"
+regex = "*"
+serde = "*"
+serde_json = { version = "*", features = ["preserve_order"] }
