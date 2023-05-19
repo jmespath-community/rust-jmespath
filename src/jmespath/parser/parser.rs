@@ -11,9 +11,9 @@ use std::rc::Rc;
 ///
 /// ```
 /// let expression = "'foo'";
-/// let ast = jmespath::parse(expression).unwrap();
+/// let ast = jmespath_community::parse(expression).unwrap();
 ///
-/// assert_eq!("(1, 1):RawString(\"foo\")", format!("{:?}", ast));
+/// assert_eq!("RawString(foo) [1, 1]", format!("{}", ast));
 /// ```
 
 pub fn parse(input: &str) -> Result<AST, ParseError> {

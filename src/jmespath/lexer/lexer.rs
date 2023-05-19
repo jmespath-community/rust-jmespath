@@ -144,7 +144,7 @@ mod tests {
 
         match result {
             Err(error) => {
-                //assert!(error.message.contains(contains));
+                assert!(error.message.contains(contains));
                 assert_eq!(Kind::Syntax, error.kind);
                 assert_eq!(Position::new(pos.0, pos.1), error.position.unwrap());
             }

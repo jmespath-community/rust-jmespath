@@ -14,6 +14,7 @@ pub enum NodeType {
     /// reported during evaluation.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("`null`").unwrap();
     /// assert_eq!("(1, 1):JsonValue(\"null\")", format!("{:?}", ast));
@@ -22,6 +23,7 @@ pub enum NodeType {
     /// A positive or negative number. _e.g_ `42`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("[42]").unwrap();
     /// assert_eq!("(1, 1):IndexExpression([(0, 0):None, (1, 2):Number(42)])", format!("{:?}", ast));
@@ -33,6 +35,7 @@ pub enum NodeType {
     /// reported during evaluation.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse(r#""foo""#).unwrap();
     /// assert_eq!("(1, 1):QuotedIdentifier(\"\\\"foo\\\"\")", format!("{:?}", ast));
@@ -41,6 +44,7 @@ pub enum NodeType {
     /// A raw string literal. _e.g_ `'text'`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("'foo'").unwrap();
     /// assert_eq!("(1, 1):RawString(\"foo\")", format!("{:?}", ast));
@@ -49,6 +53,7 @@ pub enum NodeType {
     /// An identifier expressed as an unquoted-string. _e.g_ `foo`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("foo").unwrap();
     /// assert_eq!("(1, 1):UnquotedIdentifier(\"foo\")", format!("{:?}", ast));
@@ -57,6 +62,7 @@ pub enum NodeType {
     /// A variable reference. _e.g_ `$foo`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("$foo").unwrap();
     /// assert_eq!("(1, 1):VariableRef(\"$foo\")", format!("{:?}", ast));
@@ -66,6 +72,7 @@ pub enum NodeType {
     /// A reference `$` to the root (input) value.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("$").unwrap();
     /// assert_eq!("(1, 1):RootNode", format!("{:?}", ast));
@@ -74,6 +81,7 @@ pub enum NodeType {
     /// A reference `@` to the current node.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("@").unwrap();
     /// assert_eq!("(1, 1):CurrentNode", format!("{:?}", ast));
@@ -83,6 +91,7 @@ pub enum NodeType {
     /// The filter `[?]` comparator [`NodeType::Projection`].
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("[?`true`]").unwrap();
     /// assert_eq!("(1, 1):Projection([(1, 1):Filter([(1, 3):JsonValue(\"true\")]), (0, 0):None, (0, 0):None])", format!("{:?}", ast));
@@ -97,6 +106,7 @@ pub enum NodeType {
     /// The flatten `[]` [`NodeType::Projection`].
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("[]").unwrap();
     /// assert_eq!("(1, 1):Projection([(1, 1):Flatten, (0, 0):None, (0, 0):None])", format!("{:?}", ast));
@@ -104,6 +114,7 @@ pub enum NodeType {
     /// The list wildcard `[*]` [`NodeType::Projection`].
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("[*]").unwrap();
     /// assert_eq!("(1, 1):Projection([(1, 1):ListWildcard, (0, 0):None, (0, 0):None])", format!("{:?}", ast));
@@ -111,6 +122,7 @@ pub enum NodeType {
     /// The slice `[::]` [`NodeType::Projection`].
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("[::-1]").unwrap();
     /// assert_eq!("(1, 1):Projection([(1, 1):Slice(Slice { start: None, stop: None, step: Some(-1) }), (0, 0):None, (0, 0):None])", format!("{:?}", ast));
@@ -123,6 +135,7 @@ pub enum NodeType {
     /// The minus `−` (U+2212 MINUS SIGN) or `-` arithmetic operator.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("− bar").unwrap();
     /// assert_eq!("(1, 1):ArithmeticExpression([(0, 0):None, (1, 1):Minus, (1, 3):UnquotedIdentifier(\"bar\")])", format!("{:?}", ast));
@@ -131,6 +144,7 @@ pub enum NodeType {
     ///
     /// Note: the `*` (star) character can also be used as a legitimate multiply sign.
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("foo × bar").unwrap();
     /// assert_eq!("(1, 5):ArithmeticExpression([(1, 1):UnquotedIdentifier(\"foo\"), (1, 5):Multiply, (1, 7):UnquotedIdentifier(\"bar\")])", format!("{:?}", ast));
@@ -189,6 +203,7 @@ pub enum NodeType {
     /// An expression-type: `&<expression>`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("min_by(foo, &age)").unwrap();
     /// assert_eq!("(1, 1):FunctionExpression([(1, 1):UnquotedIdentifier(\"min_by\"), (1, 8):FunctionArguments([(1, 8):UnquotedIdentifier(\"foo\"), (1, 13):Expression([(1, 14):UnquotedIdentifier(\"age\")])])])", format!("{:?}", ast));
@@ -200,6 +215,7 @@ pub enum NodeType {
     /// A binary pipe-expression `foo | bar`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("foo | bar").unwrap();
     /// assert_eq!("(1, 5):PipeExpression([(1, 1):UnquotedIdentifier(\"foo\"), (1, 7):UnquotedIdentifier(\"bar\")])", format!("{:?}", ast));
@@ -216,6 +232,7 @@ pub enum NodeType {
     ///
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("foo.bar").unwrap();
     /// assert_eq!("(1, 4):SubExpression([(1, 1):UnquotedIdentifier(\"foo\"), (1, 5):UnquotedIdentifier(\"bar\")])", format!("{:?}", ast));
@@ -233,6 +250,7 @@ pub enum NodeType {
     /// The hash wildcard `*` [`NodeType::Projection`].
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("*").unwrap();
     /// assert_eq!("(1, 1):HashWildcardProjection([(0, 0):None, (0, 0):None])", format!("{:?}", ast));
@@ -254,6 +272,7 @@ pub enum NodeType {
     ///
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("foo + bar").unwrap();
     /// assert_eq!("(1, 5):ArithmeticExpression([(1, 1):UnquotedIdentifier(\"foo\"), (1, 5):Plus, (1, 7):UnquotedIdentifier(\"bar\")])", format!("{:?}", ast));
@@ -264,6 +283,7 @@ pub enum NodeType {
     /// A comparator-expression is used in the filter [`NodeType::Filter`] [`NodeType::Projection`].
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("foo > `2`").unwrap();
     /// assert_eq!("(1, 5):ComparatorExpression([(1, 1):UnquotedIdentifier(\"foo\"), (1, 5):GreaterThan, (1, 7):JsonValue(\"2\")])", format!("{:?}", ast));
@@ -272,6 +292,7 @@ pub enum NodeType {
     /// A function expression `avg(foo[*])`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("length(@)").unwrap();
     /// assert_eq!("(1, 1):FunctionExpression([(1, 1):UnquotedIdentifier(\"length\"), (1, 8):FunctionArguments([(1, 8):CurrentNode])])", format!("{:?}", ast));
@@ -287,6 +308,7 @@ pub enum NodeType {
     /// An index-expression `[0]` or `foo[0]`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("foo[42]").unwrap();
     /// assert_eq!("(1, 4):IndexExpression([(1, 1):UnquotedIdentifier(\"foo\"), (1, 5):Number(42)])", format!("{:?}", ast));
@@ -298,6 +320,7 @@ pub enum NodeType {
     /// A let expression `let $foo = bar in baz`.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("let $foo = 'bar' in baz").unwrap();
     /// assert_eq!("(1, 1):LetExpression([(1, 10):LetBindings([(1, 5):VariableRef(\"$foo\"), (1, 12):RawString(\"bar\")]), (1, 21):UnquotedIdentifier(\"baz\")])", format!("{:?}", ast));
@@ -310,6 +333,7 @@ pub enum NodeType {
     ///
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("foo || bar").unwrap();
     /// assert_eq!("(1, 5):LogicalExpression([(1, 1):UnquotedIdentifier(\"foo\"), (1, 5):Or, (1, 8):UnquotedIdentifier(\"bar\")])", format!("{:?}", ast));
@@ -319,6 +343,7 @@ pub enum NodeType {
     ///
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("{foo: foo}").unwrap();
     /// assert_eq!("(1, 1):MultiSelectHash({\"foo\": (1, 7):UnquotedIdentifier(\"foo\")})", format!("{:?}", ast));
@@ -328,6 +353,7 @@ pub enum NodeType {
     ///
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{AST, NodeType};
     /// let ast = jmespath::parse("[foo, bar]").unwrap();
     /// assert_eq!("(1, 1):MultiSelectList([(1, 2):UnquotedIdentifier(\"foo\"), (1, 7):UnquotedIdentifier(\"bar\")])", format!("{:?}", ast));

@@ -9,7 +9,7 @@
 ///
 /// ```toml
 /// [dependencies]
-/// jmespath = { version = "1.0", features = ["preserve_order"] }
+/// jmespath_community = { version = "1.0", features = ["preserve_order"] }
 /// ```
 ///
 pub type Map<K, V> = ::std::collections::btree_map::BTreeMap<K, V>;
@@ -25,7 +25,7 @@ pub type Map<K, V> = ::std::collections::btree_map::BTreeMap<K, V>;
 ///
 /// ```toml
 /// [dependencies]
-/// jmespath = { version = "1.0", features = [] }
+/// jmespath_community = { version = "1.0", features = [] }
 /// ```
 pub type Map<K, V> = ::indexmap::IndexMap<K, V>;
 
@@ -36,6 +36,7 @@ pub type Map<K, V> = ::indexmap::IndexMap<K, V>;
 /// ## Example
 ///
 /// ```
+/// use jmespath_community as jmespath;
 /// use jmespath::map;
 /// use jmespath::Map;
 ///

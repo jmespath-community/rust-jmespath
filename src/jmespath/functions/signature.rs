@@ -6,6 +6,7 @@ pub enum ParamTypes {
     /// Represents a parameter of a given [`crate::functions::DataType`].
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::functions::DataType;
     /// use jmespath::functions::Parameter::*;
     /// use jmespath::functions::ParamTypes::*;
@@ -17,6 +18,7 @@ pub enum ParamTypes {
     /// Represents a parameter whose [`crate::functions::DataType`] is taken from a list.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::functions::DataType;
     /// use jmespath::functions::Parameter::*;
     /// use jmespath::functions::ParamTypes::*;
@@ -34,7 +36,7 @@ pub enum Parameter {
     /// Represents a required parameter to a JMESPath [`super::Function`].
     ///
     /// # Example
-    /// See [`crate::functions::ParamTypes`].
+    /// See [ParamTypes](crate::functions::ParamTypes).
     Required(ParamTypes),
     /// Represents an optional parameter to a JMESPath [`super::Function`].
     ///
@@ -43,7 +45,7 @@ pub enum Parameter {
     /// optional parameters.
     ///
     /// # Example
-    /// See [`crate::functions::ParamTypes`].
+    /// See [ParamTypes](crate::functions::ParamTypes).
     Optional(ParamTypes),
     /// Represents a variadic parameter to a JMESPath [`super::Function`].
     ///
@@ -52,6 +54,7 @@ pub enum Parameter {
     ///
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::functions::DataType;
     /// use jmespath::functions::Parameter::*;
     /// use jmespath::functions::ParamTypes::*;
@@ -107,6 +110,7 @@ impl Signature {
     /// # Example
     ///
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::functions::DataType::*;
     /// use jmespath::functions::Parameter::*;
     /// use jmespath::functions::ParamTypes::*;
@@ -126,6 +130,7 @@ impl Signature {
     /// # Example
     ///
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::functions::DataType::*;
     /// use jmespath::functions::Parameter::*;
     /// use jmespath::functions::ParamTypes::*;

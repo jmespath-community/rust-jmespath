@@ -18,6 +18,7 @@ This is a work in progress.
 
 - [x] Full grammar specification
 - [ ] Builtin functions
+- [ ] Thread-safety
 - [ ] Performance
 - [ ] Code coverage (currently 86.58%)
 - [ ] Bonus points for styling

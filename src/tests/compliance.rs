@@ -4,6 +4,7 @@ use std::{
     path::Path,
 };
 
+use jmespath_community as jmespath;
 use jmespath::Value;
 use serde::Deserialize;
 use serde_json::Value as JsonValue;

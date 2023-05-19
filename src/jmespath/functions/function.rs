@@ -33,6 +33,7 @@ pub trait Function {
 /// ```rust
 /// mod custom_functions {
 ///
+///     use jmespath_community as jmespath;
 ///     use jmespath::function;
 ///
 ///     use jmespath::errors::Error as RuntimeError;
@@ -82,11 +83,11 @@ pub trait Function {
 /// Although optional, it is recommended to also specify parameter names
 /// for improved error reporting at runtime.
 ///
-/// Use the [`super::Parameter`] and [`super::ParamTypes`] enums to succinctly
+/// Use the [Parameter](crate::functions::Parameter) and [ParamTypes](crate::functions::ParamTypes) enums to succinctly
 /// define parameter requirements.
 ///
-/// Each parameter can be either [`super::Parameter::Required`],
-/// [`super::Parameter::Optional`] or [`super::Parameter::Variadic`].
+/// Each parameter can be either [Parameter::Required](crate::functions::Parameter::Required),
+/// [Parameter::Optional](crate::functions::Parameter::Optional) or [Parameter::Variadic](crate::functions::Parameter::Variadic).
 ///
 /// An optional parameter MAY appear at any point in the function signature.
 /// However, an optional parameter MUST be followed by zero or more other
@@ -96,8 +97,8 @@ pub trait Function {
 /// It defines a parameter that can be repeated an arbitrary amount of times when the
 /// function is invoked.
 ///
-/// Additionaly, a parameter can be either [`super::ParamTypes::Of`] a specific [`super::DataType`],
-/// or can be of [`super::ParamTypes::Any`] data type taken from a list.
+/// Additionaly, a parameter can be either [ParamTypes::Of](crate::functions::ParamTypes::Of) a specific [DataType](crate::functions::DataType),
+/// or can be of [ParamTypes::Any](crate::functions::ParamTypes::Any) data type taken from a list.
 ///
 /// ### Example
 /// ```compile_fail
@@ -112,7 +113,7 @@ pub trait Function {
 ///
 /// The first one is a mandatory [`Vec<Value>`] vector of function arguments.
 ///
-/// The second one is an optional [`crate::FunctionContext`] implementation supplied
+/// The second one is an optional [FunctionContext](crate::FunctionContext) implementation supplied
 /// by the runtime. A function implementation can use the function context to
 /// create a key function to dynamically invoke expression-types when necessary.
 ///
@@ -172,8 +173,8 @@ pub trait Function {
 /// );
 /// ```
 ///
-/// In the preceding example, the second argument to the `min_by` function is a [`super::DataType::ExpRef`] expression-type
-/// that is used to create a "key" function using the [`crate::FunctionContext::create_by_function()`] function.
+/// In the preceding example, the second argument to the [min_by](crate::functions::builtin::min_by) function is a [DataType::ExpRef](crate::functions::DataType::ExpRef) expression-type
+/// that is used to create a "key" function using the [FunctionContext::create_by_function](crate::FunctionContext::create_by_function) function.
 /// This returns a closure that the function implementation uses to filter the array that was
 /// specified as the first argument to the function.
 ///

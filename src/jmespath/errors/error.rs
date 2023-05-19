@@ -70,6 +70,7 @@ impl Error {
     ///
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::errors::Kind;
     /// use jmespath::errors::Error;
     ///
@@ -85,97 +86,6 @@ impl Error {
     }
 }
 
-//// implements Ord to support "_by" functions when using iterators
-//impl Ord for Error {
-//    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-//        if self.kind < other.kind {
-//            return std::cmp::Ordering::Less;
-//        }
-//        if self.kind == other.kind {
-//            if self.position < other.position {
-//                return std::cmp::Ordering::Less;
-//            }
-//            if self.position == other.position {
-//                return self.message.cmp(&other.message);
-//            }
-//        }
-//        std::cmp::Ordering::Greater
-//    }
-//}
-//impl crate::errors::invalid_type::InvalidTypeErrorBuilderFactory for Error {
-//    type Builder = crate::errors::invalid_type::InvalidTypeErrorBuilder;
-//
-//    fn get_invalid_type_error_builder() -> Self::Builder {
-//        Self::Builder::new()
-//    }
-//}
-//
-//impl Error {
-//    pub fn invalid_value() -> Error {
-//        Error {
-//            kind: Kind::InvalidValue,
-//            message: "invalid-value".to_string(),
-//            position: None,
-//        }
-//    }
-//    pub fn not_a_number() -> Error {
-//        Error {
-//            kind: Kind::NotANumber,
-//            message: todo!(),
-//            position: None,
-//        }
-//    }
-//
-//    /// Raises a runtime error when not enough arguments are supplied to a JMESPath [`Function`].
-//    ///
-//    pub fn too_few_arguments(
-//        function_name: &str,
-//        min_count: usize,
-//        count: usize,
-//        is_variadic: bool,
-//    ) -> Error {
-//        super::invalid_arity::InvalidArityErrorBuilder::new()
-//            .for_function(function_name)
-//            .min_expected(min_count)
-//            .supplied(count)
-//            .variadic(is_variadic)
-//            .build()
-//    }
-//    /// Raises a runtime error when more arguments are supplied
-//    /// than expected by a JMESPath [`Function`].
-//    ///
-//    pub fn too_many_arguments(function_name: &str, max_count: usize, count: usize) -> Error {
-//        super::invalid_arity::InvalidArityErrorBuilder::new()
-//            .for_function(function_name)
-//            .max_expected(max_count)
-//            .supplied(count)
-//            .build()
-//    }
-//    /// Raises a runtime error when an undefined variable is evaluated.
-//    pub fn undefined_variable(variable_name: &str) -> Error {
-//        super::undefined_variable::UndefinedVariableErrorBuilder::new()
-//            .for_variable(variable_name)
-//            .build()
-//    }
-//    /// Raises a runtime error when an unknown function is invoked.
-//    ///
-//    /// # Example
-//    /// ```
-//    /// use jmespath::errors::Kind;
-//    /// use jmespath::errors::Error;
-//    ///
-//    /// let err = Error::unknown_function("unknown");
-//    ///
-//    /// assert_eq!(Kind::UnknownFunction, err.kind);
-//    /// assert_eq!("Error: unknown-function, the function 'unknown' does not exist", err.to_string());
-//    /// ```
-//    pub fn unknown_function(function_name: &str) -> Error {
-//        super::unknown_function::UnknownFunctionErrorBuilder::new()
-//            .for_function(function_name)
-//            .build()
-//    }
-//}
-//
 impl std::fmt::Display for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let position = self.position.map_or("".to_string(), |p| format!("{}", p));
@@ -213,29 +123,6 @@ impl PartialOrd for Error {
     }
 }
 
-//
-//impl std::error::Error for Error {}
-//
-//impl From<santiago::parser::ParseError<AST>> for Error {
-//    fn from(error: santiago::parser::ParseError<AST>) -> Self {
-//        let kind = Kind::Syntax;
-//        // TODO: better error handling
-//        let message = format!("{:?}", error);
-//        let position = match &error.at {
-//            Some(lexeme) => Some(Position {
-//                line: lexeme.position.line,
-//                column: lexeme.position.column,
-//            }),
-//            None => None,
-//        };
-//        Self {
-//            kind,
-//            message,
-//            position,
-//        }
-//    }
-//}
-//
 #[cfg(test)]
 mod tests {
     use super::*;

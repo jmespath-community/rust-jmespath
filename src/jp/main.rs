@@ -3,6 +3,7 @@ use std::{
     io::{self, Read},
 };
 
+use jmespath_community as jmespath;
 use jmespath::{search, Value};
 
 fn main() {

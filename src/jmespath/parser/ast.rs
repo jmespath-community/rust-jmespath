@@ -1,5 +1,5 @@
 use super::NodeType;
-use crate::{errors::Position, Map};
+use crate::{errors::Position, functions::ReturnValue, Map};
 
 /// Represents an abstract syntax tree node.
 #[derive(Clone)]
@@ -17,6 +17,24 @@ impl AST {
             position,
         }
     }
+    /// Evaluates a JMESPath expression.
+    ///
+    /// # Example
+    /// ```
+    /// use jmespath_community as jmespath;
+    /// use jmespath::{parse, Value};
+    /// use jmespath::errors::Position;
+    ///
+    /// let ast = parse("foo").unwrap();
+    /// let data = Value::from_json(r#"{"foo": "bar"}"#).unwrap();
+    /// let result = ast.search(&data).unwrap();
+    ///
+    /// assert_eq!("bar", result);
+    /// ```
+    pub fn search(&self, root: &crate::Value) -> ReturnValue {
+        let runtime = crate::Runtime::get_shared_runtime();
+        runtime.search_ast(self, root)
+    }
 }
 
 impl std::fmt::Debug for AST {
@@ -32,7 +50,7 @@ impl std::fmt::Display for AST {
 
 macro_rules! ast_ {
     ($expr:ident, $enum:ident, $type:ty) => {
-        pub fn $expr(&self) -> $type {
+        pub(crate) fn $expr(&self) -> $type {
             match self {
                 Self {
                     node_type: NodeType::$enum(v),
@@ -58,14 +76,14 @@ impl AST {
     ast_!(variable_ref, VariableRef, &String);
     ast_!(bindings, LetBindings, &Vec<AST>);
     ast_!(function_arguments, FunctionArguments, &Vec<AST>);
-    pub fn identifier(&self) -> &String {
+    pub(crate) fn identifier(&self) -> &String {
         match &self.node_type {
             NodeType::UnquotedIdentifier(v) => v,
             NodeType::QuotedIdentifier(v) => v,
             _ => unreachable!(),
         }
     }
-    pub fn number(&self) -> i32 {
+    pub(crate) fn number(&self) -> i32 {
         match self {
             AST {
                 node_type: NodeType::Number(n),

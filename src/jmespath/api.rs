@@ -7,6 +7,7 @@ use crate::Value;
 /// # Example
 ///
 /// ```
+/// use jmespath_community as jmespath;
 /// use jmespath::search;
 /// use jmespath::map;
 /// use jmespath::Map;

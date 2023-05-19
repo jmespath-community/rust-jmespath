@@ -11,6 +11,6 @@ path = "main.rs"
 
 [dependencies]
 clap = "2.33.3"
-jmespath = { path = "../jmespath", features = ["preserve_order"] }
+jmespath_community = { path = "../jmespath", features = ["preserve_order"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order"] }

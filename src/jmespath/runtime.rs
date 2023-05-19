@@ -97,7 +97,7 @@ impl Runtime {
     /// Create a new instance of the [`Runtime`] type with all
     /// builtin [`Function`] types registered.
     ///
-    /// Use the [`crate::FunctionRegistrar::register()`] function
+    /// Use the [register](crate::FunctionRegistrar::register()) function
     /// to register new custom functions.
     pub fn create_runtime() -> Self {
         Runtime {
@@ -108,6 +108,10 @@ impl Runtime {
     /// Parses and evaluate a JMESPath expression.
     pub fn search(&self, expression: &str, root: &Value) -> ReturnValue {
         let ast = parse(expression)?;
+        self.search_ast(&ast, root)
+    }
+    /// Evaluates a parsed JMESPath expression.
+    pub fn search_ast(&self, ast: &AST, root: &Value) -> ReturnValue {
         let interpreter = Interpreter::new(self, root);
         interpreter.evaluate(&ast)
     }
@@ -357,7 +361,7 @@ mod tests {
             _: &dyn Function,
             _: usize,
         ) -> Result<ByFunctionHolder, RuntimeError> {
-            let closure = |v: &Value| Ok(Value::String("by_result".to_string()));
+            let closure = |_: &Value| Ok(Value::String("by_result".to_string()));
             Ok(ByFunctionHolder {
                 closure: Box::new(closure),
             })

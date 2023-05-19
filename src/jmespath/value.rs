@@ -15,6 +15,7 @@ pub enum Value {
     /// Represents a valid JSON array.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     /// let value: Value = vec![1, 2, 3].into();
     /// assert!(matches!(value, Value::Array(..)));
@@ -22,6 +23,7 @@ pub enum Value {
     /// Represents a valid JSON boolean.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     /// let value: Value = true.into();
     /// assert!(matches!(value, Value::Boolean(true)));
@@ -29,6 +31,7 @@ pub enum Value {
     /// Represents a valid JSON null token.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     /// let value: Value = None.into();
     /// assert!(matches!(value, Value::Null));
@@ -36,6 +39,7 @@ pub enum Value {
     /// Represents a valid JSON number.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     /// use jmespath::Number;
     /// let value: Value = 42.into();
@@ -44,6 +48,7 @@ pub enum Value {
     /// Represents a valid JSON string.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     /// let value: Value = "text".into();
     /// assert!(matches!(value, Value::String(..)));
@@ -51,6 +56,7 @@ pub enum Value {
     /// Represents a valid JSON object.
     /// # Example
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::{Map, Value};
     /// use jmespath::map;
     /// let value: Value = map!("foo" => "bar").into();
@@ -133,8 +139,9 @@ impl Value {
     /// Converts a [`serde_json::Value`] to a [`Value`].
     /// # Example
     /// ```
-    /// use serde_json::json;
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
+    /// use serde_json::json;
     ///
     /// let s = json!({"foo": "bar"});
     /// let v = Value::map_from_json(&s);
@@ -168,6 +175,7 @@ impl Value {
     /// # Example
     ///
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     ///
     /// let value = Value::from_json(r#"{"foo": "bar"}"#).unwrap();
@@ -192,6 +200,7 @@ impl Value {
     /// # Example
     ///
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     ///
     /// assert_eq!("null", Value::Null.to_json());
@@ -209,6 +218,7 @@ impl Value {
     /// # Example
     ///
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     /// use jmespath::functions::DataType;
     ///
@@ -232,6 +242,7 @@ impl Value {
     /// # Example
     ///
     /// ```
+    /// use jmespath_community as jmespath;
     /// use jmespath::Value;
     /// let vec: Vec<Value> = Value::map_into(vec![1, 2]);
     ///  assert!(vec.iter().all(|x| matches!(x, Value::Number(..))));
