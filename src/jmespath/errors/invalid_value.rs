@@ -1,4 +1,4 @@
-use crate::{functions::DataType, Value};
+use crate::Value;
 
 use super::{error_builder, Error, Kind, Position};
 

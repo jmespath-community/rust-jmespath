@@ -11,7 +11,7 @@ pub mod errors;
 /// various helpers for authoring custom third-party functions.
 pub mod functions;
 /// Contains the main JMESPath expression interpreter.
-pub mod interpreter;
+pub(crate) mod interpreter;
 
 pub(crate) mod runtime;
 

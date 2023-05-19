@@ -1,5 +1,5 @@
 use super::AST;
-use crate::{Map, Value};
+use crate::Map;
 
 /// Represents the contents of an abstract syntax tree node.
 #[derive(Clone, Debug)]

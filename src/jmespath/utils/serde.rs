@@ -1,4 +1,4 @@
-use crate::{utils::Number, value::Value, Map};
+use crate::{utils::Number, value::Value};
 
 impl serde::Serialize for Value {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
