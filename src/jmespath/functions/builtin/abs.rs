@@ -16,35 +16,14 @@ function!(abs, [ subject => Required(Of(DataType::Number)) ], |_: &abs, args: &V
 
 #[cfg(test)]
 mod tests {
-    use crate::errors::Error as RuntimeError;
-    use crate::functions::Function;
-    use crate::{FunctionContext, Runtime, Value};
+    use crate::functions::builtin::test_utils::Fixture;
+    use crate::{FunctionContext, Value};
     use rstest::*;
-
-    struct Fixture {
-        runtime: Runtime,
-    }
-    impl FunctionContext for Fixture {
-        fn create_by_function<'a>(
-            &'a self,
-            _ast: &'a crate::AST,
-            _params: &'a Vec<crate::functions::ParamTypes>,
-            _function: &'a dyn Function,
-            _param_index: usize,
-        ) -> Result<crate::ByFunctionHolder<'a>, RuntimeError> {
-            todo!()
-        }
-    }
-
-    fn setup() -> Fixture {
-        let runtime = Runtime::create_runtime();
-        Fixture { runtime }
-    }
 
     #[rstest]
     #[case(3.into(), Value::from_f64(-3.0).unwrap())]
     fn abs(#[case] expected: Value, #[case] input: Value) {
-        let fixture = setup();
+        let fixture = Fixture::setup();
         let context: &dyn FunctionContext = &fixture;
 
         // call function

@@ -22,38 +22,17 @@ function!(length, [ subject => Required(Any(vec![DataType::Array, DataType::Obje
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::errors::Error as RuntimeError;
+    use crate::functions::builtin::test_utils::Fixture;
     use crate::map;
     use crate::Map;
-    use crate::Runtime;
     use rstest::*;
-
-    struct Fixture {
-        runtime: Runtime,
-    }
-    impl FunctionContext for Fixture {
-        fn create_by_function<'a>(
-            &'a self,
-            _ast: &'a crate::AST,
-            _params: &'a Vec<crate::functions::ParamTypes>,
-            _function: &'a dyn Function,
-            _param_index: usize,
-        ) -> Result<crate::ByFunctionHolder<'a>, RuntimeError> {
-            todo!()
-        }
-    }
-
-    fn setup() -> Fixture {
-        let runtime = Runtime::create_runtime();
-        Fixture { runtime }
-    }
 
     #[rstest]
     #[case(Value::from_f64(3.0).unwrap(), "foo".into())]
     #[case(Value::from_f64(3.0).unwrap(), map!("foo" => "foo", "bar" => "bar", "baz" => "baz").into())]
     #[case(Value::from_f64(3.0).unwrap(), vec!["foo", "bar", "baz"].into())]
     fn length(#[case] expected: Value, #[case] input: Value) {
-        let fixture = setup();
+        let fixture = Fixture::setup();
         let context: &dyn FunctionContext = &fixture;
 
         // call function

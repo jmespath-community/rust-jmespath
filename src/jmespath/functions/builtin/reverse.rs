@@ -30,35 +30,14 @@ function!(reverse, [ subject => Required(Any(vec![DataType::Array, DataType::Str
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::errors::Error as RuntimeError;
-    use crate::Runtime;
+    use crate::functions::builtin::test_utils::*;
     use rstest::*;
-
-    struct Fixture {
-        runtime: Runtime,
-    }
-    impl FunctionContext for Fixture {
-        fn create_by_function<'a>(
-            &'a self,
-            _ast: &'a crate::AST,
-            _params: &'a Vec<crate::functions::ParamTypes>,
-            _function: &'a dyn Function,
-            _param_index: usize,
-        ) -> Result<crate::ByFunctionHolder<'a>, RuntimeError> {
-            todo!()
-        }
-    }
-
-    fn setup() -> Fixture {
-        let runtime = Runtime::create_runtime();
-        Fixture { runtime }
-    }
 
     #[rstest]
     #[case("oof".into(), "foo".into())]
     #[case(vec!["baz", "bar", "foo"].into(), vec!["foo", "bar", "baz"].into())]
     fn reverse(#[case] expected: Value, #[case] input: Value) {
-        let fixture = setup();
+        let fixture = Fixture::setup();
         let context: &dyn FunctionContext = &fixture;
 
         // call function
