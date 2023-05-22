@@ -9,29 +9,16 @@ use crate::functions::Function;
 use crate::functions::ParamTypes::*;
 use crate::functions::Parameter::{self, *};
 
-function!(reverse, [ subject => Required(Any(vec![DataType::Array, DataType::String])) ], |_: &reverse, args: &Vec<Value>, _: &dyn FunctionContext| {
-    let reversed = match &args[0] {
-        Value::Array(v) => {
-            let mut vec = v.clone();
-            vec.reverse();
-            Value::Array(vec)
-        },
-        Value::String(s) => {
-            let mut vec: Vec<char> = s.chars().collect();
-            vec.reverse();
-            let s: String = vec.into_iter().collect();
-            Value::String(s)
-        },
-        _ => unreachable!(),
-    };
-    Ok(reversed)
+function!(abs, [ subject => Required(Of(DataType::Number)) ], |_: &abs, args: &Vec<Value>, _: &dyn FunctionContext| {
+    let num = args[0].as_f64().unwrap().abs();
+    Value::from_f64(num)
 });
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use crate::errors::Error as RuntimeError;
-    use crate::Runtime;
+    use crate::functions::Function;
+    use crate::{FunctionContext, Runtime, Value};
     use rstest::*;
 
     struct Fixture {
@@ -55,15 +42,14 @@ mod tests {
     }
 
     #[rstest]
-    #[case("oof".into(), "foo".into())]
-    #[case(vec!["baz", "bar", "foo"].into(), vec!["foo", "bar", "baz"].into())]
-    fn reverse(#[case] expected: Value, #[case] input: Value) {
+    #[case(3.into(), Value::from_f64(-3.0).unwrap())]
+    fn abs(#[case] expected: Value, #[case] input: Value) {
         let fixture = setup();
         let context: &dyn FunctionContext = &fixture;
 
         // call function
 
-        let fname = "reverse";
+        let fname = "abs";
         let args = vec![input];
         let result = fixture.runtime.call(fname, &args, context).unwrap();
 
