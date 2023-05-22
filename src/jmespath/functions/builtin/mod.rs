@@ -1,4 +1,5 @@
 pub mod abs;
+pub mod avg;
 pub mod length;
 pub mod min_by;
 pub mod reverse;

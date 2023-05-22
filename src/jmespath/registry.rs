@@ -28,6 +28,7 @@ impl Registry {
     }
     fn register_builtin_functions(&mut self) {
         register!(self, abs);
+        register!(self, avg);
         register!(self, length);
         register!(self, min_by);
         register!(self, reverse);
