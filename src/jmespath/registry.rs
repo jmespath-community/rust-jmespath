@@ -30,6 +30,7 @@ impl Registry {
         register!(self, abs);
         register!(self, avg);
         register!(self, ceil);
+        register!(self, contains);
         register!(self, floor);
         register!(self, length);
         register!(self, min_by);
