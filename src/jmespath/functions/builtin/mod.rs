@@ -2,10 +2,12 @@ pub mod abs;
 pub mod avg;
 pub mod ceil;
 pub mod contains;
+pub mod ends_with;
 pub mod floor;
 pub mod length;
 pub mod min_by;
 pub mod reverse;
+pub mod starts_with;
 
 #[cfg(test)]
 mod test_utils {

@@ -31,10 +31,12 @@ impl Registry {
         register!(self, avg);
         register!(self, ceil);
         register!(self, contains);
+        register!(self, ends_with);
         register!(self, floor);
         register!(self, length);
         register!(self, min_by);
         register!(self, reverse);
+        register!(self, starts_with);
     }
 }
 impl FunctionRegistrar for Registry {
