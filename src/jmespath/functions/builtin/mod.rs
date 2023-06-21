@@ -3,6 +3,8 @@ pub mod avg;
 pub mod ceil;
 pub mod contains;
 pub mod ends_with;
+pub mod find_first;
+pub mod find_last;
 pub mod floor;
 pub mod length;
 pub mod min_by;
