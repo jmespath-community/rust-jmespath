@@ -20,7 +20,7 @@ function!(contains, [
         if let Some(search_string) = args[1].as_str() {
             let subject: Vec<_> = subject_string.chars().collect();
             let search: Vec<_> = search_string.chars().collect();
-            let contains = subject.windows(search.len()).any(|window| window == &search);;
+            let contains = subject.windows(search.len()).any(|window| window == &search);
             return Ok(contains.into())
         }
         return Ok(false.into())
