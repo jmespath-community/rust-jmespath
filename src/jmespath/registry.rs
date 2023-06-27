@@ -37,6 +37,7 @@ impl Registry {
         register!(self, floor);
         register!(self, from_items);
         register!(self, items);
+        register!(self, keys);
         register!(self, length);
         register!(self, min_by);
         register!(self, reverse);
