@@ -7,6 +7,7 @@ pub mod find_first;
 pub mod find_last;
 pub mod floor;
 pub mod from_items;
+pub mod items;
 pub mod length;
 pub mod min_by;
 pub mod reverse;

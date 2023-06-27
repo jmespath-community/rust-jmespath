@@ -36,6 +36,7 @@ impl Registry {
         register!(self, find_last);
         register!(self, floor);
         register!(self, from_items);
+        register!(self, items);
         register!(self, length);
         register!(self, min_by);
         register!(self, reverse);
