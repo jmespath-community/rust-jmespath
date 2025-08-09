@@ -1,5 +1,8 @@
 use std::cmp::Ordering;
 
+use crate::errors::invalid_arity::InvalidArityErrorBuilderFactory;
+use crate::errors::undefined_variable::UndefinedVariableErrorBuilderFactory;
+use crate::errors::unknown_function::UnknownFunctionErrorBuilderFactory;
 use crate::errors::Kind;
 use crate::errors::Position;
 
@@ -44,7 +47,7 @@ impl Error {
         count: usize,
         is_variadic: bool,
     ) -> Error {
-        super::invalid_arity::InvalidArityErrorBuilder::new()
+        super::Error::get_invalid_arity_error_builder()
             .for_function(function_name)
             .min_expected(min_count)
             .supplied(count)
@@ -55,7 +58,7 @@ impl Error {
     /// than expected by a JMESPath [Function](crate::functions::Function).
     ///
     pub fn too_many_arguments(function_name: &str, max_count: usize, count: usize) -> Error {
-        super::invalid_arity::InvalidArityErrorBuilder::new()
+        super::Error::get_invalid_arity_error_builder()
             .for_function(function_name)
             .max_expected(max_count)
             .supplied(count)
@@ -63,7 +66,7 @@ impl Error {
     }
     /// Raises a runtime error when an undefined variable is evaluated.
     pub fn undefined_variable(variable_name: &str) -> Error {
-        super::undefined_variable::UndefinedVariableErrorBuilder::new()
+        super::Error::get_undefined_variable_error_builder()
             .for_variable(variable_name)
             .build()
     }
@@ -81,7 +84,7 @@ impl Error {
     /// assert_eq!("Error: unknown-function, the function 'unknown' does not exist", err.to_string());
     /// ```
     pub fn unknown_function(function_name: &str) -> Error {
-        super::unknown_function::UnknownFunctionErrorBuilder::new()
+        super::Error::get_unknown_function_error_builder()
             .for_function(function_name)
             .build()
     }
