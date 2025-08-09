@@ -1,0 +1,3 @@
+[workspace]
+members = ["jmespath", "jp", "tests"]
+resolver = "2"
