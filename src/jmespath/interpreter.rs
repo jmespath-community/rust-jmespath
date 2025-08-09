@@ -607,7 +607,6 @@ impl<'a> FunctionContext for Interpreter<'a> {
                 .map(|x| match x {
                     ParamTypes::Of(t) => vec![*t],
                     ParamTypes::Any(v) => v.clone(),
-                    _ => unreachable!(),
                 })
                 .flatten()
                 .collect();
