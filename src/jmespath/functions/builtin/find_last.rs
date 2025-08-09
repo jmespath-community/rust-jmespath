@@ -2,14 +2,14 @@ use crate::errors::error_builder::FunctionErrorBuilder;
 use crate::errors::error_builder::InvalidValueErrorBuilder;
 use crate::function;
 
+use crate::errors::Error as RuntimeError;
 use crate::errors::error_builder::ErrorBuilder;
 use crate::errors::invalid_value::InvalidValueErrorBuilderFactory;
-use crate::errors::Error as RuntimeError;
 
-use crate::functions::ReturnValue;
 use crate::FunctionContext;
 use crate::Number;
 use crate::Value;
+use crate::functions::ReturnValue;
 
 use crate::functions::DataType;
 use crate::functions::Function;

@@ -1,8 +1,8 @@
 use crate::function;
 
-use crate::functions::ReturnValue;
 use crate::FunctionContext;
 use crate::Value;
+use crate::functions::ReturnValue;
 
 use crate::functions::DataType;
 use crate::functions::Function;

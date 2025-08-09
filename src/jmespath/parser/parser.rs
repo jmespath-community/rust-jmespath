@@ -1,4 +1,4 @@
-use super::{grammar, AST};
+use super::{AST, grammar};
 use crate::errors::Error as ParseError;
 use crate::lexer::tokenize;
 use santiago::lexer::Lexeme;
@@ -33,7 +33,7 @@ fn parse_tokens(tokens: Vec<Rc<Lexeme>>) -> Result<AST, ParseError> {
 #[cfg(test)]
 mod tests {
 
-    use crate::parser::{parse, NodeType, AST};
+    use crate::parser::{AST, NodeType, parse};
     use rstest::*;
 
     #[test]

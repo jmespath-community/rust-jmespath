@@ -1,8 +1,8 @@
 use crate::function;
 
-use crate::functions::ReturnValue;
 use crate::FunctionContext;
 use crate::Value;
+use crate::functions::ReturnValue;
 
 use crate::functions::DataType;
 use crate::functions::Function;
@@ -22,9 +22,9 @@ function!(length, [ subject => Required(Any(vec![DataType::Array, DataType::Obje
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::Map;
     use crate::functions::builtin::test_utils::Fixture;
     use crate::map;
-    use crate::Map;
     use rstest::*;
 
     #[rstest]

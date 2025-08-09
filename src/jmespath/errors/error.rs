@@ -1,10 +1,10 @@
 use std::cmp::Ordering;
 
+use crate::errors::Kind;
+use crate::errors::Position;
 use crate::errors::invalid_arity::InvalidArityErrorBuilderFactory;
 use crate::errors::undefined_variable::UndefinedVariableErrorBuilderFactory;
 use crate::errors::unknown_function::UnknownFunctionErrorBuilderFactory;
-use crate::errors::Kind;
-use crate::errors::Position;
 
 use super::error_builder::ErrorBuilder;
 use super::error_builder::FunctionErrorBuilder;

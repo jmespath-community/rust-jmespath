@@ -1,4 +1,4 @@
-use crate::{utils::Number, Value};
+use crate::{Value, utils::Number};
 
 impl Eq for Value {}
 impl PartialEq for Value {

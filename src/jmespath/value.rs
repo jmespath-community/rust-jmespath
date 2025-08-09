@@ -359,7 +359,7 @@ impl Value {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{errors::Position, map, NodeType};
+    use crate::{NodeType, errors::Position, map};
     use rstest::*;
 
     #[rstest]

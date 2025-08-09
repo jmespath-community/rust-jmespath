@@ -1,6 +1,6 @@
+use crate::Value;
 use crate::errors::Error;
 use crate::runtime::Runtime;
-use crate::Value;
 
 /// Evaluates a JMESPath expression and returns a [`Value`].
 ///

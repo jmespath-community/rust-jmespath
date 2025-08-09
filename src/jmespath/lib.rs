@@ -125,14 +125,14 @@ pub type JmesPathFunction = dyn crate::functions::Function + Send + Sync;
 
 pub use api::*;
 
-pub use utils::map::Map;
 pub use utils::Number;
+pub use utils::map::Map;
 
 pub use errors::Error;
-pub use parser::parse;
+pub use parser::AST;
 pub use parser::NodeType;
 pub use parser::Slice;
-pub use parser::AST;
+pub use parser::parse;
 pub use runtime::ByFunctionHolder;
 pub use runtime::FunctionContext;
 pub use runtime::FunctionRegistrar;

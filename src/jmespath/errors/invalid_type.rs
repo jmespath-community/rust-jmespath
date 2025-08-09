@@ -1,6 +1,6 @@
-use crate::{functions::DataType, Value};
+use crate::{Value, functions::DataType};
 
-use super::{error_builder, Error, Kind, Position};
+use super::{Error, Kind, Position, error_builder};
 
 pub(crate) trait InvalidTypeErrorBuilderFactory {
     type Builder: super::error_builder::InvalidTypeErrorBuilder;
@@ -58,12 +58,14 @@ impl InvalidTypeErrorBuilder {
         } else {
             format!("expression->[{}]", data_types)
         };
-        self.message = format!("while calling function '{}', the expression parameter '${}' is expected to be {} but the expression evaluated to '{}' (of type {}) instead",
+        self.message = format!(
+            "while calling function '{}', the expression parameter '${}' is expected to be {} but the expression evaluated to '{}' (of type {}) instead",
             self.function_name,
             self.parameter_name,
             data_types_list,
             self.received_value,
-            self.received_data_type);
+            self.received_data_type
+        );
     }
     fn format_for_parameter(&mut self) {
         assert!(self.expected_data_types.len() > 0);
@@ -78,12 +80,14 @@ impl InvalidTypeErrorBuilder {
         } else {
             format!("either one of [{}]", data_types)
         };
-        self.message = format!("while calling function '{}', the parameter '${}' is expected to be {} but the value '{}' (of type {}) was received instead",
+        self.message = format!(
+            "while calling function '{}', the parameter '${}' is expected to be {} but the value '{}' (of type {}) was received instead",
             self.function_name,
             self.parameter_name,
             data_types_list,
             self.received_value,
-            self.received_data_type);
+            self.received_data_type
+        );
     }
 }
 impl error_builder::FunctionErrorBuilder for InvalidTypeErrorBuilder {
@@ -147,7 +151,10 @@ mod tests {
             .received(&Value::from_f64(42.0).unwrap())
             .build();
 
-        assert_eq!("Error(1, 4): invalid-type, while calling function 'my_function', the parameter '$param' is expected to be string but the value '42.0' (of type number) was received instead", format!("{}", err));
+        assert_eq!(
+            "Error(1, 4): invalid-type, while calling function 'my_function', the parameter '$param' is expected to be string but the value '42.0' (of type number) was received instead",
+            format!("{}", err)
+        );
     }
     #[test]
     fn invalid_type_any() {
@@ -159,7 +166,10 @@ mod tests {
             .received(&Value::from_f64(42.0).unwrap())
             .build();
 
-        assert_eq!("Error(1, 4): invalid-type, while calling function 'my_function', the parameter '$param' is expected to be either one of [number, string] but the value '42.0' (of type number) was received instead", format!("{}", err));
+        assert_eq!(
+            "Error(1, 4): invalid-type, while calling function 'my_function', the parameter '$param' is expected to be either one of [number, string] but the value '42.0' (of type number) was received instead",
+            format!("{}", err)
+        );
     }
     #[test]
     fn invalid_type_expref() {
@@ -171,7 +181,10 @@ mod tests {
             .received(&Value::from_f64(42.0).unwrap())
             .build();
 
-        assert_eq!("Error(1, 4): invalid-type, while calling function 'my_function', the expression parameter '$expr' is expected to be expression->string but the expression evaluated to '42.0' (of type number) instead", format!("{}", err));
+        assert_eq!(
+            "Error(1, 4): invalid-type, while calling function 'my_function', the expression parameter '$expr' is expected to be expression->string but the expression evaluated to '42.0' (of type number) instead",
+            format!("{}", err)
+        );
     }
     #[test]
     fn invalid_type_expref_any() {
@@ -183,6 +196,9 @@ mod tests {
             .received(&Value::from_f64(42.0).unwrap())
             .build();
 
-        assert_eq!("Error(1, 4): invalid-type, while calling function 'my_function', the expression parameter '$expr' is expected to be expression->[number|string] but the expression evaluated to '42.0' (of type number) instead", format!("{}", err));
+        assert_eq!(
+            "Error(1, 4): invalid-type, while calling function 'my_function', the expression parameter '$expr' is expected to be expression->[number|string] but the expression evaluated to '42.0' (of type number) instead",
+            format!("{}", err)
+        );
     }
 }

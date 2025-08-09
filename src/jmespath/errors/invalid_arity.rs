@@ -1,4 +1,4 @@
-use super::{error_builder, Error, Kind, Position};
+use super::{Error, Kind, Position, error_builder};
 
 pub(crate) trait InvalidArityErrorBuilderFactory {
     type Builder: super::error_builder::InvalidArityErrorBuilder;
@@ -113,19 +113,28 @@ mod tests {
             .min_expected(2)
             .variadic(true)
             .build();
-        assert_eq!("Error(1, 7): invalid-arity, the function 'sum' expects 2 arguments or more but none were specified", format!("{}", err));
+        assert_eq!(
+            "Error(1, 7): invalid-arity, the function 'sum' expects 2 arguments or more but none were specified",
+            format!("{}", err)
+        );
     }
 
     #[test]
     fn too_few_arguments() {
         let mut err = Error::too_few_arguments("add", 2, 1, false);
         err.position = Some(Position::new(1, 7));
-        assert_eq!("Error(1, 7): invalid-arity, the function 'add' expects 2 arguments but only 1 were specified", format!("{}", err));
+        assert_eq!(
+            "Error(1, 7): invalid-arity, the function 'add' expects 2 arguments but only 1 were specified",
+            format!("{}", err)
+        );
     }
     #[test]
     fn too_many_arguments() {
         let mut err = Error::too_many_arguments("mul", 2, 3);
         err.position = Some(Position::new(1, 7));
-        assert_eq!("Error(1, 7): invalid-arity, the function 'mul' expects at most 2 arguments but 3 were specified", format!("{}", err));
+        assert_eq!(
+            "Error(1, 7): invalid-arity, the function 'mul' expects at most 2 arguments but 3 were specified",
+            format!("{}", err)
+        );
     }
 }

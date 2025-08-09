@@ -3,8 +3,8 @@ use std::{
     io::{self, Read},
 };
 
+use jmespath::{Value, search};
 use jmespath_community as jmespath;
-use jmespath::{search, Value};
 
 fn main() {
     let args: Vec<String> = env::args().collect();

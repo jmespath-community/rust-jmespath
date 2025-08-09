@@ -4,8 +4,8 @@ use std::{
     path::Path,
 };
 
-use jmespath_community as jmespath;
 use jmespath::Value;
+use jmespath_community as jmespath;
 use serde::Deserialize;
 use serde_json::Value as JsonValue;
 
@@ -141,7 +141,10 @@ impl Compliance {
                         }
                         return ComplianceResult::Succeeded;
                     }
-                    println!("{} => ❌ evaluation failed with error '{}' whereas '{}' was expected instead.", expression, kind, err);
+                    println!(
+                        "{} => ❌ evaluation failed with error '{}' whereas '{}' was expected instead.",
+                        expression, kind, err
+                    );
                     return ComplianceResult::UnexpectedError;
                 }
                 if let Some(_) = expected {

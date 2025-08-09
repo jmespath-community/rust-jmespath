@@ -3,8 +3,8 @@ use santiago::{
     lexer::Lexeme,
 };
 
-use super::{node_type::Slice, NodeType, AST};
-use crate::{errors::Position, map, Map};
+use super::{AST, NodeType, node_type::Slice};
+use crate::{Map, errors::Position, map};
 
 pub fn grammar() -> Grammar<AST> {
     santiago::grammar!(
@@ -486,13 +486,13 @@ fn index_expression(nodes: Vec<AST>) -> AST {
             return make_projection_index_expression(
                 &nodes[0],
                 &index_expression(vec![children[2].clone(), nodes[1].clone()]),
-            )
+            );
         }
         NodeType::HashWildcardProjection(children) => {
             return make_hash_wildcard_projection(
                 &nodes[0],
                 &index_expression(vec![children[1].clone(), nodes[1].clone()]),
-            )
+            );
         }
         _ => {}
     }

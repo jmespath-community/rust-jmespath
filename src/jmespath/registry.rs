@@ -1,8 +1,8 @@
 use lazy_static::lazy_static;
 use std::collections::HashMap;
 
-use crate::runtime::FunctionRegistrar;
 use crate::JmesPathFunction;
+use crate::runtime::FunctionRegistrar;
 
 lazy_static! {
     pub static ref REGISTRY: Box<Registry> = Box::new(Registry::create_registry());

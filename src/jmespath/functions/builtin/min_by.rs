@@ -1,10 +1,10 @@
+use crate::Number;
 use crate::errors::Error as RuntimeError;
 use crate::function;
-use crate::Number;
 
-use crate::functions::ReturnValue;
 use crate::FunctionContext;
 use crate::Value;
+use crate::functions::ReturnValue;
 
 use crate::functions::DataType;
 use crate::functions::Function;
@@ -38,13 +38,13 @@ function!(min_by, [
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::errors::Kind;
-    use crate::errors::Position;
+    use crate::AST;
     use crate::ByFunctionHolder;
     use crate::NodeType;
     use crate::Number;
     use crate::Runtime;
-    use crate::AST;
+    use crate::errors::Kind;
+    use crate::errors::Position;
     use rstest::*;
 
     struct Fixture {

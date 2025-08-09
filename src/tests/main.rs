@@ -6,7 +6,6 @@ use crate::compliance::Compliance;
 use crate::compliance::ComplianceReport;
 
 fn main() {
-
     let matches = App::new("compliance")
         .version("1.0")
         .author("@springcomp")
@@ -16,20 +15,23 @@ fn main() {
                 .short("d")
                 .long("directory")
                 .takes_value(true)
-                .help("The top-level compliance tests directory"))
+                .help("The top-level compliance tests directory"),
+        )
         .arg(
             Arg::with_name("failed")
                 .short("f")
                 .long("failed-tests-only")
                 .takes_value(false)
-                .help("Displays failed tests only"))
+                .help("Displays failed tests only"),
+        )
         .arg(
             Arg::with_name("test")
                 .short("t")
                 .long("compliance-test")
                 .multiple(true)
                 .takes_value(true)
-                .help("Select one or more compliance tests to run"))
+                .help("Select one or more compliance tests to run"),
+        )
         .get_matches();
 
     let tests = matches.values_of("test");
@@ -52,7 +54,10 @@ fn main() {
     let mut paths = Compliance::get_compliance_test_files(&folder_path);
     if let Some(v) = tests {
         let selected = v.collect::<Vec<&str>>();
-        paths = paths.into_iter().filter(|p| selected.iter().any(|s| p.contains(s))).collect::<Vec<String>>();
+        paths = paths
+            .into_iter()
+            .filter(|p| selected.iter().any(|s| p.contains(s)))
+            .collect::<Vec<String>>();
     }
 
     let mut report = ComplianceReport {

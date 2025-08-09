@@ -1,5 +1,5 @@
 use super::NodeType;
-use crate::{errors::Position, functions::ReturnValue, Map};
+use crate::{Map, errors::Position, functions::ReturnValue};
 
 /// Represents an abstract syntax tree node.
 #[derive(Clone)]

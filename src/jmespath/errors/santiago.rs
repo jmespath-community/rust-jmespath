@@ -1,5 +1,5 @@
 use super::{Kind, Position};
-use crate::{parser::AST, Error};
+use crate::{Error, parser::AST};
 
 impl std::error::Error for Error {}
 

@@ -1,3 +1,5 @@
+use crate::Map;
+use crate::Value;
 use crate::errors::error_builder::{
     ErrorBuilder, FunctionErrorBuilder, InvalidTypeErrorBuilder, NotANumberErrorBuilder,
     SyntaxErrorBuilder,
@@ -7,12 +9,10 @@ use crate::errors::not_a_number::NotANumberErrorBuilderFactory;
 use crate::errors::syntax::SyntaxErrorBuilderFactory;
 use crate::errors::{Error as RuntimeError, Kind, Position};
 use crate::functions::{DataType, Function, ParamTypes, ReturnValue};
-use crate::parser::{Slice, AST};
+use crate::parser::{AST, Slice};
 use crate::runtime::{ByFunctionHolder, Runtime};
 use crate::scopes::Scopes;
 use crate::value_option::ValueOption as _;
-use crate::Map;
-use crate::Value;
 use crate::{FunctionContext, NodeType};
 
 pub struct Interpreter<'a> {
@@ -370,7 +370,11 @@ impl<'a> Interpreter<'a> {
         let rhs = right.as_f64();
 
         if let None = rhs {
-            let reason = format!("arithmetic expression required its right hand side to evaluate to a number, but received '{}' (of type '{}') instead", right, right.get_data_type());
+            let reason = format!(
+                "arithmetic expression required its right hand side to evaluate to a number, but received '{}' (of type '{}') instead",
+                right,
+                right.get_data_type()
+            );
             return Err(RuntimeError::get_syntax_error_builder()
                 .at(nodes[1].position)
                 .for_reason(&reason)
@@ -401,14 +405,22 @@ impl<'a> Interpreter<'a> {
         let rhs = right.as_f64();
 
         if let None = lhs {
-            let reason = format!("arithmetic expression required its left hand side to evaluate to a number, but received '{}' (of type '{}') instead", left, left.get_data_type());
+            let reason = format!(
+                "arithmetic expression required its left hand side to evaluate to a number, but received '{}' (of type '{}') instead",
+                left,
+                left.get_data_type()
+            );
             return Err(RuntimeError::get_syntax_error_builder()
                 .at(nodes[1].position)
                 .for_reason(&reason)
                 .build());
         }
         if let None = rhs {
-            let reason = format!("arithmetic expression required its right hand side to evaluate to a number, but received '{}' (of type '{}') instead", right, right.get_data_type());
+            let reason = format!(
+                "arithmetic expression required its right hand side to evaluate to a number, but received '{}' (of type '{}') instead",
+                right,
+                right.get_data_type()
+            );
             return Err(RuntimeError::get_syntax_error_builder()
                 .at(nodes[1].position)
                 .for_reason(&reason)
@@ -631,11 +643,11 @@ impl<'a> FunctionContext for Interpreter<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::Value;
     use crate::errors::{Kind, Position};
     use crate::functions::ReturnValue;
     use crate::parser::Slice;
-    use crate::Value;
-    use crate::{map, NodeType};
+    use crate::{NodeType, map};
 
     use rstest::*;
 

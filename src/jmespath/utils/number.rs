@@ -1,4 +1,4 @@
-use crate::{errors::Kind, value_eq::float_eq, Error};
+use crate::{Error, errors::Kind, value_eq::float_eq};
 
 /// Represents a JSON [`f64`] number that can be safely ordered.
 #[derive(Debug, Copy, Clone, PartialEq)]

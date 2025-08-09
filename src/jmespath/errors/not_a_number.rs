@@ -1,4 +1,4 @@
-use super::{error_builder, Error, Kind, Position};
+use super::{Error, Kind, Position, error_builder};
 
 pub(crate) trait NotANumberErrorBuilderFactory {
     type Builder: super::error_builder::NotANumberErrorBuilder;

@@ -1,6 +1,6 @@
 use crate::Value;
 
-use super::{error_builder, Error, Kind, Position};
+use super::{Error, Kind, Position, error_builder};
 
 pub(crate) trait InvalidValueErrorBuilderFactory {
     type Builder: super::error_builder::InvalidValueErrorBuilder;
@@ -100,7 +100,10 @@ mod tests {
             .expected("an integer less than 2.0")
             .build();
 
-        assert_eq!("Error(1, 4): invalid-value, while calling function 'my_function', the value for parameter '$param' is invalid: expected an integer less than 2.0 instead", format!("{}", err));
+        assert_eq!(
+            "Error(1, 4): invalid-value, while calling function 'my_function', the value for parameter '$param' is invalid: expected an integer less than 2.0 instead",
+            format!("{}", err)
+        );
     }
     #[test]
     fn invalid_value_received_value() {
@@ -112,6 +115,9 @@ mod tests {
             .expected("an integer less than 2.0")
             .build();
 
-        assert_eq!("Error(1, 4): invalid-value, while calling function 'my_function', the parameter '$param' evalutated to '42.0' (of type number): expected an integer less than 2.0 instead", format!("{}", err));
+        assert_eq!(
+            "Error(1, 4): invalid-value, while calling function 'my_function', the parameter '$param' evalutated to '42.0' (of type number): expected an integer less than 2.0 instead",
+            format!("{}", err)
+        );
     }
 }

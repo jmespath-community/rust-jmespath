@@ -1,11 +1,11 @@
+use crate::errors::Error as RuntimeError;
 use crate::errors::error_builder::{ErrorBuilder, FunctionErrorBuilder, InvalidTypeErrorBuilder};
 use crate::errors::invalid_type::InvalidTypeErrorBuilderFactory;
-use crate::errors::Error as RuntimeError;
 use crate::functions::{DataType, Function, ParamTypes, Parameter, Signature};
 use crate::interpreter::Interpreter;
-use crate::registry::{Registry, REGISTRY};
-use crate::{functions::ReturnValue, Value, AST};
-use crate::{parse, JmesPathFunction};
+use crate::registry::{REGISTRY, Registry};
+use crate::{AST, Value, functions::ReturnValue};
+use crate::{JmesPathFunction, parse};
 
 /// Represents an expression type as runtime.
 ///
@@ -276,11 +276,11 @@ impl FunctionRegistrar for Runtime {
 mod tests {
 
     use crate::{
+        NodeType,
         errors::{
             Kind::{self, *},
             Position,
         },
-        NodeType,
     };
 
     use super::*;

@@ -396,8 +396,8 @@ macro_rules! function {
 
 #[cfg(test)]
 mod tests {
-    use crate::function;
     use crate::AST;
+    use crate::function;
 
     use crate::errors::Error as RuntimeError;
 
