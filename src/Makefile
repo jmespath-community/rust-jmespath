@@ -37,7 +37,6 @@ compliance: build
 
 .PHONY: test
 test: build
-	cd jmespath/ && \
 	cargo test --features preserve_order
 
 .PHONY: coverage

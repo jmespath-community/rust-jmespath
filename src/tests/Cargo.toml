@@ -10,7 +10,10 @@ name = "compliance"
 path = "main.rs"
 
 [dependencies]
-clap = "2.33.3"
+clap = "4"
 jmespath_community = { path = "../jmespath", features = ["preserve_order"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order"] }
+
+[dev-dependencies]
+rstest = "0.17.0"
