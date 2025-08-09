@@ -2,10 +2,6 @@
 RUSTC=cargo rustc
 RUSTFLAGS=--release
 
-.PHONY: doc
-doc: build
-	cd jmespath/ && cargo doc
-
 # Build the JMESPath Community crate and CLI
 .PHONY: build
 build:
