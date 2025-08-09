@@ -595,7 +595,7 @@ impl<'a> FunctionContext for Interpreter<'a> {
         param: &'b Vec<ParamTypes>,
         function: &'b dyn Function,
         param_index: usize,
-    ) -> Result<ByFunctionHolder, RuntimeError> {
+    ) -> Result<ByFunctionHolder<'b>, RuntimeError> {
         let closure = move |value: &Value| -> Result<Value, RuntimeError> {
             let result = self.eval(ast, value);
             if result.is_err() {

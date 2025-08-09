@@ -481,12 +481,12 @@ mod tests {
     }
     impl FunctionContext for Fixture {
         fn create_by_function(
-            &self,
+            &'_ self,
             _: &AST,
             _: &Vec<ParamTypes>,
             _: &dyn Function,
             _: usize,
-        ) -> Result<ByFunctionHolder, RuntimeError> {
+        ) -> Result<ByFunctionHolder<'_>, RuntimeError> {
             unimplemented!()
         }
     }
