@@ -3,7 +3,7 @@
 //!
 //! # Evaluating JMESPath Expression
 //!
-//! Use the [search](crate::search) function to evaluate a JMESPath expression.
+//! Use the [search] function to evaluate a JMESPath expression.
 //!
 //! ## Example
 //! ```rust
@@ -19,7 +19,7 @@
 //! ```
 //!
 //! A JMESPath expression can be parsed once and evaluated
-//! multiple times using the [parse](crate::parser::parse) function.
+//! multiple times using the [parse] function.
 //!
 //! ## Example
 //! ```rust
@@ -78,7 +78,7 @@
 //! }
 //! ```
 //!
-//! Create a new instance of the JMESPath [Runtime](crate::Runtime) object and
+//! Create a new instance of the JMESPath [Runtime] object and
 //! register your custom function:
 //!
 //! ## Example
