@@ -2,6 +2,10 @@
 RUSTC=cargo rustc
 RUSTFLAGS=--release
 
+.PHONY: install-dev-commands
+install-dev-commands:
+	cargo install cargo-tarpaulin
+
 # Build the JMESPath Community crate and CLI
 .PHONY: build
 build:
@@ -37,9 +41,9 @@ test: build
 	cargo test --features preserve_order
 
 .PHONY: coverage
-coverage: test
+coverage: install-dev-commands test
 	cd jmespath/ && \
-	cargo tarpaulin --features preserve_order --out Html --output-dir ../coverage-report/ \
+	cargo tarpaulin --features preserve_order --out Html --output-dir ./coverage-report/ \
 
 # Clean the build artifacts
 .PHONY: clean
