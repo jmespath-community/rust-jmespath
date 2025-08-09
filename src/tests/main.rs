@@ -38,8 +38,9 @@ fn main() {
 
     // select top-level tests folder
 
+    let default_tests_path = "compliance/tests".replace("/", std::path::MAIN_SEPARATOR_STR);
     let mut folder_path =
-        Compliance::get_full_path(&Compliance::get_current_path(), &"compliance/tests");
+        Compliance::get_full_path(&Compliance::get_current_path(), &default_tests_path);
     if let Some(path) = dir {
         folder_path = path.to_string();
     }

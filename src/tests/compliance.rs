@@ -184,8 +184,13 @@ impl Compliance {
 
     /// Returns the relative paths of currently excluded compliance tests
     fn get_excluded_files() -> Vec<String> {
+        let separator = std::path::MAIN_SEPARATOR_STR;
         let mut excluded = Vec::new();
-        excluded.push("legacy/legacy-literal.json".to_string());
+        excluded.push(
+            "legacy/legacy-literal.json"
+                .replace("/", separator)
+                .to_string(),
+        );
         excluded.push("benchmarks.json".to_string());
         excluded.push("function_group_by.json".to_string());
         excluded.push("functions.json".to_string());
