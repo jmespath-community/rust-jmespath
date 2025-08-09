@@ -28,6 +28,7 @@ impl Error {
         }
     }
     /// Creates a new instance of the [`Error`] type with specified [`Position`].
+    #[cfg(test)]
     pub(crate) fn new_at(kind: Kind, message: &str, position: Position) -> Self {
         Error {
             kind,
