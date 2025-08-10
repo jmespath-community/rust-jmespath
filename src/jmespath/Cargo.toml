@@ -17,7 +17,7 @@ path = "lib.rs"
 preserve_order = ["serde_json/preserve_order", "indexmap/serde"]
 
 [dependencies]
-indexmap = { version = "1", features = ["serde"] }
+indexmap = { version = "2", features = ["serde"] }
 lazy_static = "1"
 santiago = "1.3"
 serde = { version = "1", features = ["derive"] }
