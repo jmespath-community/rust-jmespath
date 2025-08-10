@@ -25,4 +25,4 @@ serde_json = { version = "1", features = ["preserve_order"] }
 regex = "1.7"
 
 [dev-dependencies]
-rstest = "0.17.0"
+rstest = "0.26.0"
