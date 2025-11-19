@@ -1,6 +1,6 @@
 [package]
 name = "jp"
-version = "0.1.0"
+version = "0.1.2"
 edition = "2024"
 
 [[bin]]
@@ -10,7 +10,7 @@ path = "main.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-jmespath_community = { path = "../jmespath", features = ["preserve_order"] }
+jmespath_community = { path = "../jmespath", version = "0.1.2", features = ["preserve_order"] }
 santiago = "*"
 regex = "*"
 serde = "*"

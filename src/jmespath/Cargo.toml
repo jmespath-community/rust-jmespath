@@ -4,8 +4,8 @@ description = "JMESPath is a query and transformation language for JSON"
 license = "Apache-2.0"
 authors = ["Maxime Labelle <springcomp@users.noreply.github.com>"]
 homepage = "https://jmespath.site"
-documentation = "https://docs.rs/jmespath_community/0.1.1/jmespath_community"
-version = "0.1.1"
+documentation = "https://docs.rs/jmespath_community/0.1.2/jmespath_community"
+version = "0.1.2"
 edition = "2024"
 
 [lib]
