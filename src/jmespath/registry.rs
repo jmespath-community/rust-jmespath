@@ -40,6 +40,7 @@ impl Registry {
         register!(self, keys);
         register!(self, length);
         register!(self, min_by);
+        register!(self, pad_right);
         register!(self, reverse);
         register!(self, starts_with);
     }
